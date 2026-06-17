@@ -1,0 +1,6 @@
+name: legal-corporate-closing-checklist
+description: 为交易提供交割前核查清单，覆盖先决条件、资金交割及文件完整性确认
+toolsets:
+  - file
+  - web
+category: corporate-legal

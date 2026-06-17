@@ -1,0 +1,7 @@
+name: financial-fund-admin-gl-recon
+description: 总账（General Ledger）对账，发现科目余额与子账/辅助账差异，生成调节表
+toolsets:
+  - web
+  - terminal
+  - file
+category: fund-admin

@@ -1,0 +1,25 @@
+# config.yaml — hermes-cmo
+
+name: hermes-cmo
+description: 爱马仕军团 CMO，首席营销官
+approval: auto
+model: null
+provider: null
+
+# Skills — 市场与产品
+skills:
+  - name: market-research
+    type: builtin
+    description: 市场调研工作流
+
+  - name: product-design
+    type: builtin
+    description: 产品设计工作流
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web

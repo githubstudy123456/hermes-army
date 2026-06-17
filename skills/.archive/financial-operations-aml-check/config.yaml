@@ -1,0 +1,7 @@
+name: financial-operations-aml-check
+description: 交易级反洗钱监控，识别可疑交易模式，触发警报并生成 SAR（可疑交易报告）
+toolsets:
+  - web
+  - terminal
+  - file
+category: operations

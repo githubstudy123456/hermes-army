@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>爱马仕军团 · 组织架构</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f1117;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 50px;
+  }
+  .chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .card {
+    background: #1a1d27;
+    border: 1px solid #2a2d3a;
+    border-radius: 12px;
+    padding: 12px 18px;
+    text-align: center;
+    min-width: 90px;
+    max-width: 130px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #4a4d6a; }
+  .card .role { font-size: 0.7rem; color: #888; margin-bottom: 4px; }
+  .card .name { font-size: 0.85rem; font-weight: 600; color: #fff; }
+  .card .sub  { font-size: 0.6rem; color: #555; margin-top: 3px; }
+
+  .card.commander .name { color: #f0c040; }
+  .card.exec     .name { color: #a78bfa; }
+  .card.ops      .name { color: #60d9f5; }
+  .card.tech     .name { color: #34d399; }
+  .card.monitor  .name { color: #fb923c; }
+
+  .connector { width: 1px; background: #2a2d3a; height: 30px; }
+
+  .section-label {
+    font-size: 0.65rem; color: #555; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 6px; margin-top: 30px;
+  }
+
+  .branch {
+    display: flex; align-items: flex-start; gap: 8px;
+    margin-top: 30px; flex-wrap: wrap; justify-content: center;
+  }
+  .branch-item {
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .vertical-line { width: 1px; height: 20px; background: #2a2d3a; }
+  .cards-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+  .secretary-badge {
+    font-size: 0.55rem; color: #888; background: #252836;
+    border-radius: 4px; padding: 1px 5px; margin-top: 4px;
+    display: inline-block;
+  }
+
+  .legend {
+    margin-top: 50px; display: flex; justify-content: center;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.75rem; color: #666;
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .workflow-section {
+    margin-top: 40px; border-top: 1px solid #2a2d3a;
+    padding-top: 30px; max-width: 700px; margin-left: auto; margin-right: auto;
+  }
+  .workflow-section h3 { font-size: 0.8rem; color: #888; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+  .workflow-list { display: flex; flex-direction: column; gap: 8px; }
+  .workflow-item {
+    background: #1a1d27; border: 1px solid #2a2d3a;
+    border-radius: 8px; padding: 10px 14px;
+    font-size: 0.78rem; color: #aaa;
+  }
+  .workflow-item .arrow { color: #555; margin: 0 4px; }
+  .workflow-item .tag { color: #f0c040; }
+
+  .schedule-section {
+    margin-top: 30px; border-top: 1px solid #2a2d3a;
+    padding-top: 30px; max-width: 700px; margin-left: auto; margin-right: auto;
+  }
+  .schedule-section h3 { font-size: 0.8rem; color: #888; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+  .schedule-item {
+    display: flex; gap: 12px; align-items: baseline;
+    font-size: 0.75rem; color: #888; padding: 3px 0;
+    border-bottom: 1px solid #1e2130;
+  }
+  .schedule-item .time { color: #60d9f5; min-width: 55px; }
+  .schedule-item .dept { color: #a78bfa; min-width: 120px; }
+  .schedule-item .task { color: #ccc; }
+  .schedule-item .new  { color: #fb923c; font-size: 0.65rem; }
+
+  .groups-section {
+    margin-top: 30px; border-top: 1px solid #2a2d3a;
+    padding-top: 30px; max-width: 700px; margin-left: auto; margin-right: auto;
+  }
+  .groups-section h3 { font-size: 0.8rem; color: #888; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .group-item { font-size: 0.75rem; color: #888; padding: 3px 0; }
+  .group-item .id { color: #60d9f5; }
+</style>
+</head>
+<body>
+
+<h1>🦞 爱马仕军团 · 组织架构图</h1>
+<p class="subtitle">Hermès Army · Organizational Structure · 2026-06-17</p>
+
+<div class="chart">
+  <!-- Commander -->
+  <div class="row">
+    <div class="card commander">
+      <div class="role">Commander</div>
+      <div class="name">指挥官</div>
+      <div class="sub">CEO · 总指挥</div>
+    </div>
+  </div>
+  <div class="connector"></div>
+
+  <!-- 六大高管 -->
+  <div class="row" style="gap:16px;">
+    <div class="card ops" style="min-width:80px;">
+      <div class="role">COO</div>
+      <div class="name">运营总监</div>
+      <div class="secretary-badge">+ 秘书</div>
+    </div>
+    <div class="card ops" style="min-width:80px;">
+      <div class="role">CFO</div>
+      <div class="name">财务总监</div>
+      <div class="secretary-badge">+ 秘书</div>
+    </div>
+    <div class="card ops" style="min-width:80px;">
+      <div class="role">CIO</div>
+      <div class="name">信息总监</div>
+      <div class="secretary-badge">+ 秘书</div>
+    </div>
+    <div class="card ops" style="min-width:80px;">
+      <div class="role">CLO</div>
+      <div class="name">法务总监</div>
+      <div class="secretary-badge">+ 秘书</div>
+    </div>
+    <div class="card tech" style="min-width:80px;">
+      <div class="role">CTO</div>
+      <div class="name">技术总监</div>
+      <div class="secretary-badge">+ 秘书</div>
+    </div>
+    <div class="card monitor" style="min-width:80px;">
+      <div class="role">CRO</div>
+      <div class="name">审核总监</div>
+      <div class="secretary-badge">+ 秘书</div>
+    </div>
+  </div>
+</div>
+
+<!-- 执行层 -->
+<div class="branch" style="margin-top:20px;">
+  <!-- COO 执行层 -->
+  <div class="branch-item">
+    <div class="section-label">COO · 运营</div>
+    <div class="vertical-line"></div>
+    <div class="cards-row" style="gap:6px;">
+      <div class="card exec" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.75rem;">content</div>
+        <div class="sub">内容运营</div>
+      </div>
+      <div class="card exec" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.75rem;">marketing</div>
+        <div class="sub">营销推广</div>
+      </div>
+      <div class="card exec" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.75rem;">pm</div>
+        <div class="sub">项目管理</div>
+      </div>
+      <div class="card exec" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.75rem;">qa</div>
+        <div class="sub">质量保证</div>
+      </div>
+      <div class="card exec" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.75rem;">fullstack</div>
+        <div class="sub">全栈开发</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTO 执行层 -->
+  <div class="branch-item">
+    <div class="section-label">CTO · 技术</div>
+    <div class="vertical-line"></div>
+    <div class="cards-row" style="gap:6px;">
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">architect</div>
+        <div class="sub">架构设计</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">fullstack</div>
+        <div class="sub">全栈开发</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">frontend</div>
+        <div class="sub">前端开发</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">backend</div>
+        <div class="sub">后端开发</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">dev-3d</div>
+        <div class="sub">3D开发</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">test</div>
+        <div class="sub">测试</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">devops</div>
+        <div class="sub">运维</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">security</div>
+        <div class="sub">安全</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">data-science</div>
+        <div class="sub">数据科学</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">industry-res</div>
+        <div class="sub">行业研究</div>
+      </div>
+      <div class="card tech" style="min-width:65px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">ai-lab</div>
+        <div class="sub">AI实验室</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLO 执行层 -->
+  <div class="branch-item">
+    <div class="section-label">CLO · 法务</div>
+    <div class="vertical-line"></div>
+    <div class="cards-row" style="gap:6px;">
+      <div class="card exec" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.75rem;">legal</div>
+        <div class="sub">法律合规</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRO 执行层 -->
+  <div class="branch-item">
+    <div class="section-label">CRO · 监察</div>
+    <div class="vertical-line"></div>
+    <div class="cards-row" style="gap:6px;">
+      <div class="card monitor" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">工作流卡点</div>
+        <div class="sub">监测</div>
+      </div>
+      <div class="card monitor" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">上下文水位</div>
+        <div class="sub">监测</div>
+      </div>
+      <div class="card monitor" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">Profile容量</div>
+        <div class="sub">监测</div>
+      </div>
+      <div class="card monitor" style="min-width:70px; padding:8px 10px;">
+        <div class="name" style="font-size:0.7rem;">架构健康</div>
+        <div class="sub">监测</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAG 工作流 -->
+<div class="workflow-section">
+  <h3>DAG 工作流</h3>
+  <div class="workflow-list">
+    <div class="workflow-item">
+      入口路由 <span class="arrow">→</span> <span class="tag">dept-activation.yaml</span>
+    </div>
+    <div class="workflow-item">
+      通用跨部门任务 <span class="arrow">→</span> <span class="tag">ceo-org-delegation.yaml</span>
+    </div>
+    <div class="workflow-item">
+      故障/紧急事件 <span class="arrow">→</span> <span class="tag">incident-response.yaml</span>
+    </div>
+    <div class="workflow-item">
+      产品上线 <span class="arrow">→</span> <span class="tag">product-launch.yaml</span>
+    </div>
+    <div class="workflow-item">
+      营销活动 <span class="arrow">→</span> <span class="tag">marketing-campaign.yaml</span>
+    </div>
+    <div class="workflow-item">
+      代码审查 <span class="arrow">→</span> <span class="tag">code-review.yaml</span>
+    </div>
+    <div class="workflow-item">
+      部门监察/专项审计 <span class="arrow">→</span> <span class="tag">cro-audit.yaml</span>
+    </div>
+  </div>
+</div>
+
+<!-- 定时任务 -->
+<div class="schedule-section">
+  <h3>核心定时任务</h3>
+  <div class="schedule-item"><span class="time">08:00</span><span class="dept">hermes-coo</span><span class="task">每日调研公司日报</span></div>
+  <div class="schedule-item"><span class="time">08:30</span><span class="dept">hermes-political</span><span class="task">全球政治要闻日报</span></div>
+  <div class="schedule-item"><span class="time">09:00</span><span class="dept">hermes-cro</span><span class="task">每日架构健康巡检</span> <span class="new">NEW</span></div>
+  <div class="schedule-item"><span class="time">09:20</span><span class="dept">hermes-coo</span><span class="task">商业要闻日报</span></div>
+  <div class="schedule-item"><span class="time">10:00</span><span class="dept">hermes-coo</span><span class="task">机器人日报</span></div>
+  <div class="schedule-item"><span class="time">20:00</span><span class="dept">hermes-political</span><span class="task">晚间政治监测推送</span></div>
+  <div class="schedule-item"><span class="time">20:00</span><span class="dept">hermes-economic</span><span class="task">晚间经济监测推送</span></div>
+  <div class="schedule-item"><span class="time">每周一</span><span class="dept">hermes-coo</span><span class="task">每周军队状态报告</span></div>
+  <div class="schedule-item"><span class="time">每周五</span><span class="dept">hermes-legal</span><span class="task">法规动态追踪</span></div>
+  <div class="schedule-item"><span class="time">每月30日</span><span class="dept">hermes-coo</span><span class="task">月报（学术/科技/社会/文娱）</span></div>
+  <div class="schedule-item"><span class="time">每年2月</span><span class="dept">hermes-coo</span><span class="task">年报（近6月+未来1年定档）</span></div>
+</div>
+
+<!-- 飞书订阅群 -->
+<div class="groups-section">
+  <h3>飞书订阅群</h3>
+  <div class="group-item">日报群 <span class="id">oc_c6883cd907e4d226736d87ce9c6c6d79</span></div>
+  <div class="group-item">周报群 <span class="id">oc_605cb68f2814b7fef2336ae15b7982bd</span></div>
+  <div class="group-item">月报群 <span class="id">oc_bd20e92437df496f958a38958d48b92a</span></div>
+  <div class="group-item">年报群 <span class="id">oc_675ed9bc27aa367fdca299e332b8da1c</span></div>
+</div>
+
+<!-- 图例 -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#f0c040"></div><span>Commander</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#60d9f5"></div><span>COO / CFO / CIO / CLO</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#34d399"></div><span>CTO · 执行层</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div><span>COO 执行层</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fb923c"></div><span>CRO · 监察</span></div>
+</div>
+
+</body>
+</html>

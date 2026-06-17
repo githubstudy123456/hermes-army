@@ -1,0 +1,8 @@
+{
+  "last_report_path": "/home/ubuntu/.hermes/profiles/commander/logs/curator/20260612-094104",
+  "last_run_at": "2026-06-12T09:41:04.661076+00:00",
+  "last_run_duration_seconds": 528.92473,
+  "last_run_summary": "auto: no changes; llm: I now have the complete picture. The full filesystem contains many more ghost skills (in subdirectories like `mlops/inference/`, `mlops/evaluation/`, `apple/`, `creative/creative-ideation`, etc.) but they fall outside the scope of this pass…",
+  "paused": false,
+  "run_count": 3
+}

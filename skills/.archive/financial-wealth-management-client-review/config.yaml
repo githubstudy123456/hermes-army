@@ -1,0 +1,8 @@
+name: financial-wealth-management-client-review
+description: 客户账户定期review — 持仓诊断、风险评估、表现归因、建议生成
+category: wealth-management
+toolsets:
+  - web
+  - terminal
+version: 1.0.0
+author: hermes-financial

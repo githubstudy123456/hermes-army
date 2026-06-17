@@ -1,0 +1,18 @@
+name: legal-commercial-saas-msa
+description: SaaS 主协议（MSA）+ 服务订单（SOW）深度审查，覆盖数据处理、可用性保证、赔偿机制、IP归属等 SaaS 特有条款。面向 commercial-legal 领域，供法务团队 SaaS 合同审查使用。
+toolsets:
+  - file
+  - web
+category: commercial-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - commercial
+  - saas
+  - msa
+  - sows
+  - data-processing
+  - contract-review
+  - sla

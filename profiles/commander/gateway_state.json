@@ -1,0 +1,23 @@
+{
+  "pid": 427830,
+  "kind": "hermes-gateway",
+  "argv": [
+    "/home/ubuntu/.hermes/hermes-agent/venv/bin/hermes",
+    "gateway",
+    "run"
+  ],
+  "start_time": 114379604,
+  "gateway_state": "running",
+  "exit_reason": null,
+  "restart_requested": false,
+  "active_agents": 0,
+  "platforms": {
+    "feishu": {
+      "state": "connected",
+      "error_code": null,
+      "error_message": null,
+      "updated_at": "2026-06-11T13:42:02.402304+00:00"
+    }
+  },
+  "updated_at": "2026-06-11T13:42:02.403722+00:00"
+}

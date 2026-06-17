@@ -1,0 +1,6 @@
+name: financial-investment-banking-deal-tracker
+description: 投资银行交易进度追踪工具，管理从初步接触到交割的全流程节点、待办事项、文档版本及各方联系人
+toolsets:
+  - web
+  - terminal
+category: investment-banking

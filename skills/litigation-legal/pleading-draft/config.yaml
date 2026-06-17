@@ -1,0 +1,10 @@
+name: pleading-draft
+description: 根据案件材料起草诉状、答辩状、上诉状等诉讼文书
+category: litigation-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 案件材料准备完毕
+  - 收到对方诉状
+  - 上诉期届满前

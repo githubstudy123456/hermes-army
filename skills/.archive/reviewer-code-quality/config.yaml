@@ -1,0 +1,10 @@
+name: reviewer-code-quality
+description: 代码质量审核 — 评估可读性、命名规范、代码重复、模块化质量，给出质量评分和具体改进建议。
+toolsets:
+  - terminal
+  - file
+  - browser
+  - web
+  - skills
+  - delegation
+  - session_search

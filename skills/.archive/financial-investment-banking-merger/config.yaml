@@ -1,0 +1,6 @@
+name: financial-investment-banking-merger
+description: 投资银行并购模型（Merger Model / LBO Model）搭建，支持合并双方 DCF、EPS accretion/dilution、Synergy 分析，输出 Excel 模型
+toolsets:
+  - web
+  - terminal
+category: investment-banking

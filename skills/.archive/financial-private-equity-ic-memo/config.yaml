@@ -1,0 +1,6 @@
+name: ic-memo
+description: 起草私募股权投资委员会（IC）备忘录，结构化呈现投资机会概览、商业逻辑、财务模型、估值、风险点及投资建议，供投委会决策参考。
+toolsets:
+  - web
+  - terminal
+category: private-equity

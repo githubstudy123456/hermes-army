@@ -1,0 +1,6 @@
+name: legal-corporate-board-minutes
+description: 从会议记录中提取结构化董事会决议，生成符合《公司法》要求的规范化会议记录
+toolsets:
+  - file
+  - web
+category: corporate-legal

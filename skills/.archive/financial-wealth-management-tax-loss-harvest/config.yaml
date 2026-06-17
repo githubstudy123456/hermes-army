@@ -1,0 +1,8 @@
+name: financial-wealth-management-tax-loss-harvest
+description: 税务亏损抵减（中国税务规则）— 亏损识别、抵减策略、wash-sale规则、节税估算
+category: wealth-management
+toolsets:
+  - web
+  - terminal
+version: 1.0.0
+author: hermes-financial

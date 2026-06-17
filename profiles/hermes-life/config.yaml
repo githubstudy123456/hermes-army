@@ -1,0 +1,33 @@
+# config.yaml — hermes-life
+
+name: hermes-life
+description: 爱马仕军团生活智库，负责饮食营养、学习成长、身体健康、生活质量
+approval: auto
+model: null
+provider: null
+
+# Skills
+skills:
+  - name: life
+    type: builtin
+    description: 个人生活管理全集，饮食营养/学习成长/身体健康/生活质量
+
+  - name: ECC
+    type: external
+    url: https://github.com/yoshitoooo/ECC
+    description: 效率工具与生活优化资源汇总
+
+  - name: oh-my-zsh
+    type: external
+    url: https://github.com/ohmyzsh/ohmyzsh
+    description: 终端生产力工具，shell 环境优化
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search

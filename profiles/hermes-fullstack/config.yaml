@@ -1,0 +1,33 @@
+name: hermes-fullstack
+description: 爱马仕军团全栈总监，负责前后端开发、系统架构与复杂技术攻关。技术深厚，系统思维，主动担当。
+approval: true
+skills:
+  - name: frontend-dev
+    type: local
+  - name: backend-dev
+    type: local
+  - name: 3d-dev
+    type: local
+  - name: architecture-design
+    type: local
+  - name: dev-workflow
+    type: local
+  - name: github-pr-workflow
+    type: local
+  - name: github-code-review
+    type: local
+  - name: system-design-primer
+    type: external
+    url: https://github.com/donnemartin/system-design-primer
+    description: 系统设计知识体系，完整学习路径
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- skills
+- browser
+- vision
+- web
+- session_search

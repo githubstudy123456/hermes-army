@@ -1,0 +1,10 @@
+name: open-source-compliance
+description: 审计软件开源许可合规性，识别许可证义务与风险
+category: ip-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 代码引入前审查
+  - 定期合规审计
+  - 第三方审计

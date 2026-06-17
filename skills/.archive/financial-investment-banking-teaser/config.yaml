@@ -1,0 +1,6 @@
+name: financial-investment-banking-teaser
+description: 投资银行 Teaser（交易概要）快速生成工具，用于向潜在买家/投资人简要展示交易亮点，不含敏感财务细节
+toolsets:
+  - web
+  - terminal
+category: investment-banking

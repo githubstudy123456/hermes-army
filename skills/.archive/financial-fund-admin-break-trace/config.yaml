@@ -1,0 +1,7 @@
+name: financial-fund-admin-break-trace
+description: 对账差异溯源，追踪差异根因至原始凭证/交易节点
+toolsets:
+  - web
+  - terminal
+  - file
+category: fund-admin

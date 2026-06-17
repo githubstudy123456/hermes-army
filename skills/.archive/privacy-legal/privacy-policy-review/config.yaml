@@ -1,0 +1,10 @@
+name: privacy-policy-review
+description: 审查隐私政策文本，确保符合中国PIPL和GDPR等法规要求
+category: privacy-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 隐私政策起草/修订
+  - 产品上线前审查
+  - 第三方审计

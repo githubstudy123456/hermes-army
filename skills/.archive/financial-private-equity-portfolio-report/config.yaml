@@ -1,0 +1,6 @@
+name: portfolio-report
+description: 对已投项目组合进行定期监控，收集关键运营指标（KPI）、财务表现、估值变动、风险事件，生成 Portfolio 监控报告，供投委会和 LP 定期审阅。
+toolsets:
+  - web
+  - terminal
+category: private-equity

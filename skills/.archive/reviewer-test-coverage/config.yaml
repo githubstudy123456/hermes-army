@@ -1,0 +1,10 @@
+name: reviewer-test-coverage
+description: 测试覆盖评估 — 分析单元测试/集成测试覆盖率，评估测试质量，给出用例补充建议。
+toolsets:
+  - terminal
+  - file
+  - browser
+  - web
+  - skills
+  - delegation
+  - session_search

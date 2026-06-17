@@ -1,0 +1,6 @@
+name: lbo-model
+description: 杠杆收购模型，输入交易结构（收购价、杠杆倍数）、债务条款，输出 IRR、MOIC、DPI 等回报指标，含敏感性分析和债务还款计划。
+toolsets:
+  - web
+  - terminal
+category: financial-analysis

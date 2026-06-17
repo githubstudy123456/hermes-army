@@ -1,0 +1,31 @@
+# config.yaml — hermes-cfo
+
+name: hermes-cfo
+description: 爱马仕军团 CFO，首席财务官
+approval: auto
+model: null
+provider: null
+
+# Skills — 财务与合规
+skills:
+  - name: financial-analysis
+    type: builtin
+    description: 财务分析模型工作台
+
+  - name: ai-governance-legal
+    type: builtin
+    description: AI合规与治理法律工作台
+
+  - name: legal-commercial-saas-msa-review
+    type: builtin
+    description: SaaS 主协议深度审查
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search

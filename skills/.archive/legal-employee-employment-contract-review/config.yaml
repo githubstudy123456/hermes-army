@@ -1,0 +1,16 @@
+name: legal-employee-employment-contract-review
+description: 对劳动合同文本进行合规性审查，识别必备条款缺失、违法条款、风险分级，输出修改建议。面向 employment-legal 领域，供法务团队劳动合同审查使用。
+toolsets:
+  - file
+  - web
+category: employment-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - employment
+  - labor-contract
+  - contract-review
+  - labor-law
+  - employment-compliance

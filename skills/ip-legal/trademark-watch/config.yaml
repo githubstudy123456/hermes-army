@@ -1,0 +1,10 @@
+name: trademark-watch
+description: 监测近似商标申请，保护企业品牌权益
+category: ip-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 新商标申请公告期监控
+  - 定期全类监测
+  - 竞争对手商标追踪

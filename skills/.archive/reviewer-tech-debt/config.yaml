@@ -1,0 +1,10 @@
+name: reviewer-tech-debt
+description: 技术债务评估 — 识别维护性风险、遗留代码、重复代码、过期依赖等债务问题。
+toolsets:
+  - terminal
+  - file
+  - browser
+  - web
+  - skills
+  - delegation
+  - session_search

@@ -1,0 +1,228 @@
+name: "Hermès 故障响应流程"
+description: "故障报告 → 分类定级 → 紧急处理 → 复盘输出"
+
+# ═══════════════════════════════════════════════════════════
+# 第一阶段：故障分类定级
+# ═══════════════════════════════════════════════════════════
+- id: triage
+  role: hermes-cto
+  input_doc: "[故障原始报告]"  # 直接来自告警或人工上报
+  task: |
+    收到故障报告，必须立即处理。
+
+    故障信息：{{incident_report}}
+
+    输出：
+    1. 严重程度：P0/P1/P2/P3
+    2. 影响范围
+    3. 故障类型：后端/前端/基础设施/安全/合规
+    4. 初步根因方向
+    5. 建议的紧急处理措施
+
+    不能以"信息不足"为由拒绝处理，先处理再补充。
+
+    输出：triage_成果.md
+  output_doc: "triage_成果.md"
+  output_dir: "incident/"
+
+# ═══════════════════════════════════════════════════════════
+# 第二阶段：紧急处理（各类型路由）
+# ═══════════════════════════════════════════════════════════
+
+- id: backend_emergency
+  role: hermes-cto
+  input_doc: "incident/triage_成果.md"
+  task: |
+    收到故障处理任务，必须执行。
+
+    必须先读：incident/triage_成果.md
+    你的任务：后端故障紧急处理
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 根因分析
+    2. 修复方案（分临时缓解 + 彻底修复）
+    3. 预计恢复时间
+    4. 后续加固建议
+
+    输出：backend_emergency_成果.md
+  output_doc: "backend_emergency_成果.md"
+  output_dir: "incident/cto/"
+  condition: "{{triage_成果.md}} contains 后端"
+
+- id: frontend_emergency
+  role: hermes-cto
+  input_doc: "incident/triage_成果.md"
+  task: |
+    收到故障处理任务，必须执行。
+
+    必须先读：incident/triage_成果.md
+    你的任务：前端故障紧急处理
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：frontend_emergency_成果.md
+  output_doc: "frontend_emergency_成果.md"
+  output_dir: "incident/cto/"
+  condition: "{{triage_成果.md}} contains 前端"
+
+- id: infra_emergency
+  role: hermes-cto
+  input_doc: "incident/triage_成果.md"
+  task: |
+    收到故障处理任务，必须执行。
+
+    必须先读：incident/triage_成果.md
+    你的任务：基础设施故障紧急处理
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：infra_emergency_成果.md
+  output_doc: "infra_emergency_成果.md"
+  output_dir: "incident/cto/"
+  condition: "{{triage_成果.md}} contains 基础设施"
+
+- id: security_emergency
+  role: hermes-clo
+  input_doc: "incident/triage_成果.md"
+  task: |
+    收到安全事件处理任务，必须执行。
+
+    必须先读：incident/triage_成果.md
+    你的任务：安全事件紧急处理
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 安全影响评估
+    2. 紧急止血措施
+    3. 法律合规通知义务
+    4. 证据保全
+
+    输出：security_emergency_成果.md
+  output_doc: "security_emergency_成果.md"
+  output_dir: "incident/clo/"
+  condition: "{{triage_成果.md}} contains 安全"
+
+- id: compliance_emergency
+  role: hermes-clo
+  input_doc: "incident/triage_成果.md"
+  task: |
+    收到合规事件处理任务，必须执行。
+
+    必须先读：incident/triage_成果.md
+    你的任务：合规事件紧急处理
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：compliance_emergency_成果.md
+  output_doc: "compliance_emergency_成果.md"
+  output_dir: "incident/clo/"
+  condition: "{{triage_成果.md}} contains 合规"
+
+- id: ops_impact
+  role: hermes-coo
+  input_doc: "incident/triage_成果.md"
+  task: |
+    评估业务影响，必须执行。
+
+    必须先读：incident/triage_成果.md
+    你的任务：业务影响评估
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 业务中断程度
+    2. 用户影响
+    3. 收入损失估算
+    4. 客户沟通建议
+
+    输出：ops_impact_成果.md
+  output_doc: "ops_impact_成果.md"
+  output_dir: "incident/coo/"
+  condition: "{{triage_成果.md}} contains P0 or {{triage_成果.md}} contains P1"
+
+# ═══════════════════════════════════════════════════════════
+# 第三阶段：秘书审核（强制门禁）
+# ═══════════════════════════════════════════════════════════
+
+- id: cto_secretary_review
+  role: hermes-cto-secretary
+  input_doc: |
+    - incident/cto/backend_emergency_成果.md
+    - incident/cto/frontend_emergency_成果.md
+    - incident/cto/infra_emergency_成果.md
+  task: |
+    审核 CTO 部故障处理产出。
+
+    必须先读上游所有文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：cto_secretary_review_结论.md
+  output_doc: "cto_secretary_review_结论.md"
+  output_dir: "incident/secretary/cto/"
+  condition: "true"
+
+- id: clo_secretary_review
+  role: hermes-clo-secretary
+  input_doc: |
+    - incident/clo/security_emergency_成果.md
+    - incident/clo/compliance_emergency_成果.md
+  task: |
+    审核 CLO 部故障处理产出。
+
+    必须先读上游所有文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：clo_secretary_review_结论.md
+  output_doc: "clo_secretary_review_结论.md"
+  output_dir: "incident/secretary/clo/"
+  condition: "true"
+
+- id: coo_secretary_review
+  role: hermes-coo-secretary
+  input_doc: "incident/coo/ops_impact_成果.md"
+  task: |
+    审核 COO 部业务影响评估产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：coo_secretary_review_结论.md
+  output_doc: "coo_secretary_review_结论.md"
+  output_dir: "incident/secretary/coo/"
+  condition: "true"
+
+# ═══════════════════════════════════════════════════════════
+# 第四阶段：复盘汇总
+# ═══════════════════════════════════════════════════════════
+- id: postmortem
+  role: hermes-cto
+  input_doc: |
+    - incident/triage_成果.md
+    - incident/secretary/cto/cto_secretary_review_结论.md
+    - incident/secretary/clo/clo_secretary_review_结论.md
+    - incident/secretary/coo/coo_secretary_review_结论.md
+  task: |
+    故障处理完成，输出复盘报告。
+
+    必须先读所有审核结论文档。
+
+    输出：
+    1. 时间线
+    2. 根因总结
+    3. 修复措施
+    4. 改进项（短期/长期）
+    5. 经验教训
+
+    输出：postmortem_成果.md
+  output_doc: "postmortem_成果.md"
+  output_dir: "incident/"
+
+metadata:
+  version: "2.0"
+  author: Hermès Corp
+  created: "2026-06-17"
+  tags: [故障, 应急, P0/P1]
+  note: "故障响应优先速度，审核可并行，秘书发现问题直接打回"

@@ -1,0 +1,10 @@
+name: tos-review
+description: 审查用户服务协议，确保符合中国法规要求且条款公平合理
+category: product-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 用户协议起草/修订
+  - 产品上线前审查
+  - 投诉争议评估

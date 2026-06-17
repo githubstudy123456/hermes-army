@@ -1,0 +1,30 @@
+name: hermes-reviewer
+description: 爱马仕军团审核总监，负责代码质量审核、安全审计和架构审查。只做审核不做开发，质量是门槛。
+approval: true
+skills:
+  - name: slowmist-agent-security
+    type: external
+    url: https://github.com/nocatch-unchecked/slowmist-agent-security
+    description: SlowMist 安全审计框架，AI Agent 安全评估标准
+  - name: code-review
+    type: external
+    url: https://github.com/nocatch-unchecked/claude-code-review
+    description: 代码审查工作流，PR 审查和审核报告生成
+  - name: dogfood
+    type: local
+  - name: playwright-browser-automation
+    type: local
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- skills
+- browser
+- vision
+- web
+- session_search
+notify_to: oc_c6883cd907e4d226736d87ce9c6c6d79
+workdir: /home/ubuntu/.hermes/army-workspace
+memory: /home/ubuntu/.hermes/profiles/hermes-reviewer/memory.md

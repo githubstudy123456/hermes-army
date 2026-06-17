@@ -1,0 +1,7 @@
+name: financial-fund-admin-nav-tieout
+description: 基金净值（NAV）核对，验证基金资产净值与托管行/估值系统数据一致性
+toolsets:
+  - web
+  - terminal
+  - file
+category: fund-admin

@@ -1,0 +1,31 @@
+# config.yaml — hermes-cio
+
+name: hermes-cio
+description: 爱马仕军团 CIO，首席信息官，负责信息战略、数据资产与AI研发管理
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search
+
+skills:
+  - name: market-research
+    type: local
+  - name: arxiv
+    type: local
+  - name: blogwatcher
+    type: local
+  - name: huggingface-hub
+    type: local
+  - name: llama-cpp
+    type: local
+  - name: gguf-quantization
+    type: local

@@ -1,0 +1,6 @@
+name: legal-corporate-material-contract-schedule
+description: 对企业重大合同进行台账化管理，提供到期预警及履约状态追踪
+toolsets:
+  - file
+  - web
+category: corporate-legal

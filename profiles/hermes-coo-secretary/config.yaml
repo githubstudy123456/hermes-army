@@ -1,0 +1,31 @@
+# config.yaml — hermes-coo-secretary
+
+name: hermes-coo-secretary
+description: COO秘书，严格审核 content/marketing/pm/qa/fullstack 产出
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search
+
+skills:
+  - name: slowmist-agent-security
+    type: external
+    url: https://github.com/nocatch-unchecked/slowmist-agent-security
+    description: 安全审计框架，AI Agent 安全评估标准
+  - name: code-review
+    type: local
+  - name: dogfood
+    type: local
+  - name: playwright-browser-automation
+    type: local
+  - name: market-research
+    type: local

@@ -1,0 +1,6 @@
+name: legal-corporate-diligence-issue
+description: 对尽职调查中发现的法律问题进行分类、风险定级并输出结构化问题清单
+toolsets:
+  - file
+  - web
+category: corporate-legal

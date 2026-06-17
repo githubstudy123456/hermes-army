@@ -1,0 +1,10 @@
+name: reviewer-security-audit
+description: 安全漏洞扫描 — 审计 OWASP Top 10、依赖漏洞、敏感信息泄露、密钥管理问题。
+toolsets:
+  - terminal
+  - file
+  - browser
+  - web
+  - skills
+  - delegation
+  - session_search

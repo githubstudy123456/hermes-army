@@ -1,0 +1,26 @@
+name: hermes-pm
+description: 爱马仕军团产品总监，负责产品规划、需求管理与跨职能协调。用户导向，结构化思维，务实敏捷。
+approval: true
+skills:
+  - name: Summer2026-Internships
+    type: external
+    url: https://github.com/SimplifyJobs/Summer2026-Internships
+    description: 实习与校招信息，产品管理参考
+  - name: unopim
+    type: external
+    url: https://github.com/Uncannyowl/unopim
+    description: 开源 PIM 系统，产品信息管理参考
+  - name: Product-Manager-Skills
+    type: external
+    url: https://github.com/product-school/Product-Manager-Skills
+    description: 产品经理技能树，能力模型参考
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- vision
+- session_search

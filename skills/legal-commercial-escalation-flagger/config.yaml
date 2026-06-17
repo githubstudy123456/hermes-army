@@ -1,0 +1,17 @@
+name: legal-commercial-escalation-flagger
+description: 合同风险升级路由 — 根据合同类型、金额、风险等级自动判断处理路径和升级对象，输出路由矩阵决策报告。面向 commercial-legal 领域，供法务团队快速判断处理层级使用。
+toolsets:
+  - file
+  - web
+category: commercial-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - commercial
+  - escalation
+  - routing
+  - risk-management
+  - workflow
+  - contract-management

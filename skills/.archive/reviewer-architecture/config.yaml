@@ -1,0 +1,10 @@
+name: reviewer-architecture
+description: 架构审查 — 评估设计模式、模块耦合度、扩展性、数据库设计是否符合架构规范。
+toolsets:
+  - terminal
+  - file
+  - browser
+  - web
+  - skills
+  - delegation
+  - session_search

@@ -1,0 +1,8 @@
+name: financial-equity-research-thesis-tracker
+description: 投资主题（Thesis）追踪与验证 — 持仓逻辑验证、关键指标监控、主题兑现进度追踪
+category: equity-research
+toolsets:
+  - web
+  - browser
+version: 1.0.0
+author: hermes-financial

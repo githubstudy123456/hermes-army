@@ -1,0 +1,17 @@
+name: legal-commercial-renewal-tracker
+description: 商业合同续约追踪 — 监控合同到期前 90 天预警，生成续约决策报告，支持主动管理。面向 commercial-legal 领域，供法务团队合同生命周期管理使用。
+toolsets:
+  - file
+  - web
+category: commercial-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - commercial
+  - renewal
+  - tracking
+  - contract-management
+  - reminder
+  - lifecycle

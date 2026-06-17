@@ -1,0 +1,236 @@
+name: "Hermès CRO 监察审计流程"
+description: "工作流卡点 + 上下文水位 + Profile容量 + 系统架构 → 审计报告"
+
+# ═══════════════════════════════════════════════════════════
+# 第一阶段：触发确认
+# ═══════════════════════════════════════════════════════════
+- id: audit_trigger
+  role: hermes-cro
+  input_doc: "[主人监察指令 或 定时巡检触发]"
+  task: |
+    收到监察任务，必须执行。
+
+    监察类型：
+    - 日常巡检：定时检查四大监测区域
+    - 触发审计：P0告警驱动 / 主人专项指令
+    - 季度评审：全面架构健康度评分
+
+    指令：{{audit_request}}
+    背景：{{context}}
+
+    输出：
+    1. 本次监察范围和目标
+    2. 需要检查的具体项目清单
+    3. 时间安排
+
+    输出：audit_trigger_成果.md
+  output_doc: "audit_trigger_成果.md"
+  output_dir: "audit/[audit_id]/"
+
+# ═══════════════════════════════════════════════════════════
+# 第二阶段：四大监测（并行）
+# ═══════════════════════════════════════════════════════════
+
+# ── 监测一：工作流通畅度 ───────────────────────────────
+- id: workflow_smootness_check
+  role: hermes-cro-secretary
+  input_doc: "audit/[audit_id]/audit_trigger_成果.md"
+  task: |
+    检查所有工作流的卡点和堵点。
+
+    必须先读：audit_trigger_成果.md
+
+    检查项目：
+    1. 各 cron 任务 last_status / last_run / next_run
+    2. 连续失败的任务（status=error / delivery=failed）
+    3. 工作流节点超时情况
+    4. 秘书审核积压数量（>3个待审 = 积压）
+    5. 升级报告流转是否正常（有没有被截留）
+    6. 部门间协作阻塞情况
+
+    判定标准：
+    - P0：节点超时2x且无升级报告
+    - P1：节点超时但有升级报告，或秘书积压>3
+    - 正常：节点按时完成
+
+    输出：
+    1. 工作流通畅度评级（🟢/🟡/🔴）
+    2. 卡点/堵点清单（节点ID / 部门 / 超时时间 / 当前状态）
+    3. 秘书审核积压名单
+    4. 升级报告异常流转记录
+
+    输出：workflow_smootness_check_成果.md
+  output_doc: "workflow_smootness_check_成果.md"
+  output_dir: "audit/[audit_id]/monitoring/workflow/"
+  condition: "true"
+
+# ── 监测二：上下文水位 ────────────────────────────────
+- id: context_water_level_check
+  role: hermes-cro-secretary
+  input_doc: "audit/[audit_id]/audit_trigger_成果.md"
+  task: |
+    检查各 Profile 的上下文占用情况。
+
+    必须先读：audit_trigger_成果.md
+
+    检查项目：
+    1. 各 Profile 最近一次会话的上下文占用比例
+    2. 上下文溢出事件（>90%）
+    3. 高上下文占用原因分析（任务粒度 / session未清理 / 泄漏）
+    4. session_cleanup 任务执行情况
+    5. 长期高水位 Profile 记录
+
+    判定标准：
+    - 🔴 溢出：上下文 > 90%
+    - 🟡 警告：上下文 70-90%
+    - 🟢 正常：上下文 < 70%
+
+    溢出处理：
+    - 记录溢出 Profile、触发时间、持续时长
+    - 分析溢出原因
+    - 评估对其他任务的影响
+
+    输出：
+    1. 各 Profile 上下文水位表（Profile / 当前占用% / 趋势 / 评级）
+    2. 溢出事件记录
+    3. 高水位原因分析
+    4. session_cleanup 执行评估
+
+    输出：context_water_level_check_成果.md
+  output_doc: "context_water_level_check_成果.md"
+  output_dir: "audit/[audit_id]/monitoring/context/"
+  condition: "true"
+
+# ── 监测三：Profile 容量 ──────────────────────────────
+- id: profile_capacity_check
+  role: hermes-cro-secretary
+  input_doc: "audit/[audit_id]/audit_trigger_成果.md"
+  task: |
+    检查各部门的 Profile 容量和任务分配情况。
+
+    必须先读：audit_trigger_成果.md
+
+    检查项目：
+    1. 各部门 Profile 数量 vs 任务积压情况
+    2. 长期无任务分配的 Profile（>30天）
+    3. 任务积压但成员不足的部门
+    4. 某类任务无 Profile 覆盖的情况
+    5. Profile 之间协作依赖关系
+
+    判定标准：
+    - 容量不足：任务积压 + 成员不足
+    - 冗余：Profile >30天无任务
+    - 覆盖缺口：某类任务无 Profile
+    - 协作过度：两 Profile 强依赖 >3个任务
+
+    输出：
+    1. 各部门 Profile 容量评估表
+    2. 冗余 Profile 名单
+    3. 容量不足部门及建议
+    4. 覆盖缺口清单
+    5. 架构优化建议
+
+    输出：profile_capacity_check_成果.md
+  output_doc: "profile_capacity_check_成果.md"
+  output_dir: "audit/[audit_id]/monitoring/capacity/"
+  condition: "true"
+
+# ── 监测四：系统架构健康 ─────────────────────────────
+- id: system_architecture_check
+  role: hermes-cro-secretary
+  input_doc: "audit/[audit_id]/audit_trigger_成果.md"
+  task: |
+    检查系统架构整体健康度。
+
+    必须先读：audit_trigger_成果.md
+
+    检查项目：
+    1. 工作流 DAG 是否正常流转
+    2. 秘书审核门禁是否有效（有无打回记录）
+    3. cron 任务整体运行状况（成功率 / 失败率）
+    4. 主动监控规则是否生效
+    5. 新增/删除 Profile 后的架构一致性
+    6. 各部门汇报链路是否顺畅
+
+    输出：
+    1. 系统架构健康度评分（🟢优秀/🟡合格/🔴不及格）
+    2. 各维度评分详情
+    3. 架构问题清单
+    4. 季度评审综合建议
+
+    输出：system_architecture_check_成果.md
+  output_doc: "system_architecture_check_成果.md"
+  output_dir: "audit/[audit_id]/monitoring/architecture/"
+  condition: "true"
+
+# ═══════════════════════════════════════════════════════════
+# 第三阶段：秘书汇总初审
+# ═══════════════════════════════════════════════════════════
+
+- id: cro_secretary_review
+  role: hermes-cro-secretary
+  input_doc: |
+    - audit/[audit_id]/monitoring/workflow/workflow_smootness_check_成果.md
+    - audit/[audit_id]/monitoring/context/context_water_level_check_成果.md
+    - audit/[audit_id]/monitoring/capacity/profile_capacity_check_成果.md
+    - audit/[audit_id]/monitoring/architecture/system_architecture_check_成果.md
+  task: |
+    汇总四大监测数据，输出初审结论。
+
+    必须先读所有上游监测报告。
+
+    输出：
+    1. 各监测维度评级汇总（工作流/上下文/容量/架构）
+    2. P0/P1 紧急问题清单
+    3. 需 CRO 重点关注的事项
+    4. 建议的整改措施（按部门/按问题）
+    5. 是否需要升级 Commander
+
+    输出：cro_secretary_review_结论.md
+  output_doc: "cro_secretary_review_结论.md"
+  output_dir: "audit/[audit_id]/secretary/"
+
+# ═══════════════════════════════════════════════════════════
+# 第四阶段：CRO 终审决策
+# ═══════════════════════════════════════════════════════════
+
+- id: cro_decision
+  role: hermes-cro
+  input_doc: |
+    - audit/[audit_id]/audit_trigger_成果.md
+    - audit/[audit_id]/secretary/cro_secretary_review_结论.md
+  task: |
+    终审监察结果，输出审计报告。
+
+    必须先读所有上游文档。
+
+    输出：
+    1. 监察结论：✅正常 / ⚠️关注 / ❌违规 / 🔺升级 Commander
+    2. 各监测维度详细结论
+    3. P0 告警（立即处理）：
+       - Agent上下文溢出
+       - 工作流彻底卡死
+       - Profile容量严重不足
+    4. P1 问题（24h内处理）：
+       - 节点超时2x
+       - 上下文>90%
+       - 秘书积压>3
+    5. 整改要求和时间表
+    6. 下次巡检计划
+
+    输出：cro_decision_审计报告.md
+  output_doc: "cro_decision_审计报告.md"
+  output_dir: "audit/[audit_id]/"
+
+metadata:
+  version: "2.0"
+  author: Hermès Corp
+  created: "2026-06-17"
+  tags: [监察, 审计, CRO, 工作流, 上下文, 容量, 架构]
+  trigger_types: [日常巡检, 触发审计, 季度评审]
+  phases: [触发, 四维监测, 初审, 终审]
+  alert_levels:
+    P0: Agent上下文溢出/工作流彻底卡死 → 立即上报Commander
+    P1: 节点超时2x/上下文>90%/秘书积压>3 → 24h处理
+    P2: 容量不合理/协作阻塞 → 周期性汇报
+    P3: 架构优化建议 → 纳入季度评审

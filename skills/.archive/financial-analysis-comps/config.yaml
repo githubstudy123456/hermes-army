@@ -1,0 +1,6 @@
+name: comps-analysis
+description: 可比公司三张表横向对比，提取收入/EBITDA/净利润核心指标，计算 EV/EBITDA、EV/Revenue、P/E 等估值倍数，输出 Comps Table。
+toolsets:
+  - web
+  - terminal
+category: financial-analysis

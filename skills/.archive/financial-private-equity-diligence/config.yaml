@@ -1,0 +1,6 @@
+name: diligence-checklist
+description: 系统梳理私募股权投资尽职调查各模块清单（业务、财务、法律、运营、技术），辅助分析师快速完成尽调准备工作，追踪已完成/待完成项，输出尽调完成度报告。
+toolsets:
+  - web
+  - terminal
+category: private-equity

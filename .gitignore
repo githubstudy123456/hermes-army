@@ -1,0 +1,8 @@
+cache/
+logs/
+sessions/
+state.db
+auth.json
+secrets/
+*.log
+.DS_Store

@@ -1,0 +1,7 @@
+name: financial-operations-kyc-screening
+description: 客户开户文档解析与 KYC/AML 规则引擎，支持中国 AML 规定及 FATF 标准
+toolsets:
+  - web
+  - terminal
+  - file
+category: operations

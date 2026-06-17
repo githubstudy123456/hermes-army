@@ -1,0 +1,222 @@
+name: "Hermès 通用指令分发"
+description: "跨部门复杂任务 → 按最小单元拆解 → 各节点接单负责 → 汇总输出决策"
+
+# ═══════════════════════════════════════════════════════════
+# 第一阶段：Commander 意图理解
+# ═══════════════════════════════════════════════════════════
+- id: commander_analyze
+  role: commander
+  input_doc: "[主人原始指令]"  # 直接来自主人
+  task: |
+    主人下达指令，请理解意图并拆解任务。
+
+    指令：{{request}}
+    背景：{{context}}
+
+    输出：
+    1. 任务解读（一句话）
+    2. 需要哪些部门参与（明确写出 COO/CTO/CIO/CFO/CLO）
+    3. 每个参与部门的任务清单（具体要什么产出）
+    4. 优先级和时间预期
+    5. 关键风险
+
+    如果指令模糊，先说明需要澄清的问题，不要假理解。
+  output_doc: "commander_analyze_成果.md"
+  output_dir: "commander/"
+
+# ═══════════════════════════════════════════════════════════
+# 第二阶段：各节点并行接单（condition 只控制激活，不控制是否负责）
+# ═══════════════════════════════════════════════════════════
+
+# ── COO 部：用户研究 ─────────────────────────────────────
+- id: coo_user_research
+  role: hermes-coo
+  input_doc: "commander/commander_analyze_成果.md"
+  task: |
+    收到 Commander 下发任务，必须执行并输出成果。
+
+    上游文档：commander_analyze_成果.md（必须先读）
+    你的任务：用户研究/需求分析
+
+    接到任务就负责，做不了或做不好也输出升级报告，不要推走。
+
+    输出成果文档：coo_user_research_成果.md
+  output_doc: "coo_user_research_成果.md"
+  output_dir: "coo/"
+  condition: "true"  # 只要 COO 参与就一直激活
+
+# ── CTO 部：技术分析 ─────────────────────────────────────
+- id: cto_tech_analysis
+  role: hermes-cto
+  input_doc: "commander/commander_analyze_成果.md"
+  task: |
+    收到 Commander 下发任务，必须执行并输出成果。
+
+    上游文档：commander_analyze_成果.md（必须先读）
+    你的任务：技术可行性/架构分析
+
+    接到任务就负责，做不了或做不好也输出升级报告，不要推走。
+
+    输出成果文档：cto_tech_analysis_成果.md
+  output_doc: "cto_tech_analysis_成果.md"
+  output_dir: "cto/"
+  condition: "true"
+
+# ── CIO 部：数据/AI分析 ──────────────────────────────────
+- id: cio_data_analysis
+  role: hermes-cio
+  input_doc: "commander/commander_analyze_成果.md"
+  task: |
+    收到 Commander 下发任务，必须执行并输出成果。
+
+    上游文档：commander_analyze_成果.md（必须先读）
+    你的任务：数据方案/AI模型分析
+
+    接到任务就负责，做不了或做不好也输出升级报告，不要推走。
+
+    输出成果文档：cio_data_analysis_成果.md
+  output_doc: "cio_data_analysis_成果.md"
+  output_dir: "cio/"
+  condition: "true"
+
+# ── CFO 部：财务分析 ─────────────────────────────────────
+- id: cfo_finance_analysis
+  role: hermes-cfo
+  input_doc: "commander/commander_analyze_成果.md"
+  task: |
+    收到 Commander 下发任务，必须执行并输出成果。
+
+    上游文档：commander_analyze_成果.md（必须先读）
+    你的任务：财务测算/预算分析
+
+    接到任务就负责，做不了或做不好也输出升级报告，不要推走。
+
+    输出成果文档：cfo_finance_analysis_成果.md
+  output_doc: "cfo_finance_analysis_成果.md"
+  output_dir: "cfo/"
+  condition: "true"
+
+# ── CLO 部：合规分析 ─────────────────────────────────────
+- id: clo_legal_analysis
+  role: hermes-clo
+  input_doc: "commander/commander_analyze_成果.md"
+  task: |
+    收到 Commander 下发任务，必须执行并输出成果。
+
+    上游文档：commander_analyze_成果.md（必须先读）
+    你的任务：法律合规/政策分析
+
+    接到任务就负责，做不了或做不好也输出升级报告，不要推走。
+
+    输出成果文档：clo_legal_analysis_成果.md
+  output_doc: "clo_legal_analysis_成果.md"
+  output_dir: "clo/"
+  condition: "true"
+
+# ═══════════════════════════════════════════════════════════
+# 第三阶段：秘书审核（强制门禁）
+# ═══════════════════════════════════════════════════════════
+
+- id: coo_secretary_review
+  role: hermes-coo-secretary
+  input_doc: "coo/coo_user_research_成果.md"
+  task: |
+    审核 COO 部产出。
+
+    上游文档：coo/coo_user_research_成果.md（必须先读）
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    发现问题必须指出，不放过任何疏漏。
+
+    输出：coo_secretary_review_结论.md
+  output_doc: "coo_secretary_review_结论.md"
+  output_dir: "secretary/coo/"
+  condition: "true"
+
+- id: cto_secretary_review
+  role: hermes-cto-secretary
+  input_doc: "cto/cto_tech_analysis_成果.md"
+  task: |
+    审核 CTO 部产出。
+
+    上游文档：cto/cto_tech_analysis_成果.md（必须先读）
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：cto_secretary_review_结论.md
+  output_doc: "cto_secretary_review_结论.md"
+  output_dir: "secretary/cto/"
+  condition: "true"
+
+- id: cio_secretary_review
+  role: hermes-cio-secretary
+  input_doc: "cio/cio_data_analysis_成果.md"
+  task: |
+    审核 CIO 部产出。
+
+    上游文档：cio/cio_data_analysis_成果.md（必须先读）
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：cio_secretary_review_结论.md
+  output_doc: "cio_secretary_review_结论.md"
+  output_dir: "secretary/cio/"
+  condition: "true"
+
+- id: cfo_secretary_review
+  role: hermes-cfo-secretary
+  input_doc: "cfo/cfo_finance_analysis_成果.md"
+  task: |
+    审核 CFO 部产出。
+
+    上游文档：cfo/cfo_finance_analysis_成果.md（必须先读）
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：cfo_secretary_review_结论.md
+  output_doc: "cfo_secretary_review_结论.md"
+  output_dir: "secretary/cfo/"
+  condition: "true"
+
+- id: clo_secretary_review
+  role: hermes-clo-secretary
+  input_doc: "clo/clo_legal_analysis_成果.md"
+  task: |
+    审核 CLO 部产出。
+
+    上游文档：clo/clo_legal_analysis_成果.md（必须先读）
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：clo_secretary_review_结论.md
+  output_doc: "clo_secretary_review_结论.md"
+  output_dir: "secretary/clo/"
+  condition: "true"
+
+# ═══════════════════════════════════════════════════════════
+# 第四阶段：Commander 汇总决策
+# ═══════════════════════════════════════════════════════════
+- id: commander_decision
+  role: commander
+  input_doc: |
+    - commander/commander_analyze_成果.md
+    - secretary/coo/coo_secretary_review_结论.md
+    - secretary/cto/cto_secretary_review_结论.md
+    - secretary/cio/cio_secretary_review_结论.md
+    - secretary/cfo/cfo_secretary_review_结论.md
+    - secretary/clo/clo_secretary_review_结论.md
+  task: |
+    各部门产出已汇聚，请整合输出决策备忘录。
+
+    必须读取以下所有文档：
+    - commander_analyze_成果.md
+    - 各 secretary 审核结论
+
+    如果有升级报告或打回重做，必须处理后再决策。
+
+    输出：commander_decision_成果.md
+  output_doc: "commander_decision_成果.md"
+  output_dir: "commander/"
+
+metadata:
+  version: "2.0"
+  author: Hermès Corp
+  created: "2026-06-17"
+  tags: [通用, 跨部门, DAG]
+  note: "每个节点必须读取上游文档，输出成果或升级报告"

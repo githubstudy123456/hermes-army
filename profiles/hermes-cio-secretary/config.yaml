@@ -1,0 +1,35 @@
+# config.yaml — hermes-cio-secretary
+
+name: hermes-cio-secretary
+description: CIO秘书，严格审核信息采集/数据分析/AI研究产出
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search
+
+skills:
+  - name: slowmist-agent-security
+    type: external
+    url: https://github.com/nocatch-unchecked/slowmist-agent-security
+    description: 安全审计框架，审核信息安全和AI安全
+  - name: code-review
+    type: local
+  - name: market-research
+    type: local
+  - name: arxiv
+    type: local
+  - name: huggingface-hub
+    type: local
+  - name: llama-cpp
+    type: local
+  - name: gguf-quantization
+    type: local

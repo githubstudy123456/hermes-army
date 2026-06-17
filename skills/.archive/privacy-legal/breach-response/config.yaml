@@ -1,0 +1,10 @@
+name: breach-response
+description: 数据泄露事件响应流程，支持通知制作和监管报告
+category: privacy-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 发现数据泄露
+  - 收到安全事件报告
+  - 监管调查启动

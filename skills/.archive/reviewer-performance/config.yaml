@@ -1,0 +1,10 @@
+name: reviewer-performance
+description: 性能审计 — 评估算法复杂度、查询效率、资源管理，识别性能瓶颈和优化建议。
+toolsets:
+  - terminal
+  - file
+  - browser
+  - web
+  - skills
+  - delegation
+  - session_search

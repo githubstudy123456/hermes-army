@@ -1,0 +1,8 @@
+name: financial-wealth-management-rebalancing
+description: 组合再平衡 — 阈值触发检测、偏离度计算、再平衡建议生成（含成本分析）
+category: wealth-management
+toolsets:
+  - web
+  - terminal
+version: 1.0.0
+author: hermes-financial

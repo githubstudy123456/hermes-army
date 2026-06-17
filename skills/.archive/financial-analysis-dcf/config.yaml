@@ -1,0 +1,6 @@
+name: dcf-model
+description: 基于 FCFF/FCFE 的现金流折现模型，输入 WACC、Terminal Growth Rate，输出 Equity Value 与每股价值区间，含敏感性分析。
+toolsets:
+  - web
+  - terminal
+category: financial-analysis

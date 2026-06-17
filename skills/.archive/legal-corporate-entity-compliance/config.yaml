@@ -1,0 +1,6 @@
+name: legal-corporate-entity-compliance
+description: 核查中国公司全生命周期合规状态，覆盖工商、税务、社保、外汇等法定要求
+toolsets:
+  - file
+  - web
+category: corporate-legal

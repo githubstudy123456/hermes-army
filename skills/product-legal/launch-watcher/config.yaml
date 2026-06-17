@@ -1,0 +1,10 @@
+name: launch-watcher
+description: 产品上线前合规checklist审查，确保符合中国网络法规要求
+category: product-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 产品开发完成
+  - 上线前30天
+  - 重大功能变更

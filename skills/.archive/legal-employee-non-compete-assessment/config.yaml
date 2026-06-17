@@ -1,0 +1,17 @@
+name: legal-employee-non-compete-assessment
+description: 对劳动合同中的竞业限制条款进行合规性评估，包括期限、补偿金、违约金、行业范围等要素的合法性判断。面向 employment-legal 领域，供法务团队竞业限制评估使用。
+toolsets:
+  - file
+  - web
+category: employment-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - employment
+  - non-compete
+  - non-compete-agreement
+  - labor-law
+  - confidentiality
+  - non-compete-clause

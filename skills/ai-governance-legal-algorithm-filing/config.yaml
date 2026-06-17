@@ -1,0 +1,18 @@
+name: ai-governance-legal-algorithm-filing
+description: 依据《互联网信息服务算法推荐管理规定》完成算法备案与公示流程指导，包括备案材料准备、填报系统操作、变更与注销。面向 ai-governance-legal 领域，供法务团队算法备案使用。
+toolsets:
+  - file
+  - web
+category: ai-governance-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - ai-governance
+  - algorithm-filing
+  - algorithm-filing-system
+  - cac
+  - compliance
+  - deep-synthesis
+  - genai

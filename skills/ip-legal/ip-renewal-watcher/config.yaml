@@ -1,0 +1,10 @@
+name: ip-renewal-watcher
+description: 监控商标、专利注册有效期，在到期前30天发出续展提醒
+category: ip-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 定期监控（每日/每周）
+  - 到期前30天触发
+  - 宽展期内每日监控

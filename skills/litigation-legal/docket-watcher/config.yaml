@@ -1,0 +1,10 @@
+name: docket-watcher
+description: 监控诉讼案件日程节点，在关键日期前推送提醒
+category: litigation-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 每日定期监控
+  - 开庭前7天提醒
+  - 诉讼时效预警

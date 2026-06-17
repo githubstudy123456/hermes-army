@@ -1,0 +1,7 @@
+name: financial-fund-admin-month-end-close
+description: 标准月结流程，支持应计、roll-forward、差异分析，生成月结报告
+toolsets:
+  - web
+  - terminal
+  - file
+category: fund-admin

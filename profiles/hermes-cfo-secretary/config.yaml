@@ -1,0 +1,29 @@
+# config.yaml — hermes-cfo-secretary
+
+name: hermes-cfo-secretary
+description: CFO秘书，严格审核财务数据和报告
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search
+
+skills:
+  - name: financial-analysis
+    type: local
+  - name: financial-equity-research
+    type: local
+  - name: financial-investment-banking
+    type: local
+  - name: financial-operations
+    type: local
+  - name: legal-commercial
+    type: local

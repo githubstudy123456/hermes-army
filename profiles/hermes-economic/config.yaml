@@ -1,0 +1,49 @@
+name: hermes-economic
+description: 经济研究部主管 · 主动监测宏观经济与金融市场，重大事件即时推送
+profile_type: department-director
+
+platform: feishu
+feishu:
+  group_id: oc_c6883cd907e4d226736d87ce9c6c6d79
+  delivery: push
+
+behavior:
+  mode: active_monitoring
+  push_on_events: true
+  check_interval: continuous
+  approved: false
+  auto_reject: false
+
+tools:
+  enabled:
+    - web
+    - terminal
+    - file
+    - delegation
+
+notification:
+  push_to_group: true
+  push_to_dm: true
+  save_reports_to: ~/.hermes/economic-reports/
+  report_format: text
+skills:
+  - name: economic-monitor
+    type: builtin
+    description: A股大盘/人民币汇率/央行政策/美联储动态监控
+
+  - name: macro-monthly-report
+    type: builtin
+    description: 宏观月报生成与推送，社会/政治/经济月度综合
+
+  - name: china-reform-report
+    type: builtin
+    description: 改革开放时间线报告，制度变迁研究
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- session_search

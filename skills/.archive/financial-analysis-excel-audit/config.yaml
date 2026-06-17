@@ -1,0 +1,6 @@
+name: excel-audit
+description: 对 Excel 财务模型进行系统性审计，检查公式链接、环形引用、隐藏行列、假设与输出一致性，输出 QC 报告并标记潜在风险点。
+toolsets:
+  - web
+  - terminal
+category: financial-analysis

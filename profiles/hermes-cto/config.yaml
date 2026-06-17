@@ -1,0 +1,39 @@
+# config.yaml — hermes-cto
+
+name: hermes-cto
+description: 爱马仕军团 CTO，首席技术官
+approval: auto
+model: null
+provider: null
+
+# Skills — 技术管理
+skills:
+  - name: awesome-cto
+    type: external
+    url: https://github.com/kuchin/awesome-cto
+    description: CTO/CEO 必读精选资源列表
+
+  - name: Startup-CTO-Handbook
+    type: external
+    url: https://github.com/ZachGoldberg/Startup-CTO-Handbook
+    description: 初创公司技术高管实战手册
+
+  - name: engineering-management
+    type: external
+    url: https://github.com/charlax/engineering-management
+    description: 工程管理知识库
+
+  - name: awesome-engineering-strategy
+    type: external
+    url: https://github.com/aleixmorgadas/awesome-engineering-strategy
+    description: 工程策略与战略规划资源汇总
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search

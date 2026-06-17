@@ -1,0 +1,35 @@
+# config.yaml — hermes-clo
+
+name: hermes-clo
+description: 爱马仕军团 CLO，首席法务官，仅负责法律合规
+approval: auto
+model: null
+provider: null
+
+# Skills — 法律合规
+skills:
+  - name: ai-governance-legal
+    type: builtin
+    description: AI合规与治理法律工作台
+
+  - name: ai-governance-legal-algorithm-filing
+    type: builtin
+    description: 算法备案与公示流程指导
+
+  - name: legal-commercial
+    type: builtin
+    description: 商业合同法律审查工作台
+
+  - name: legal-regulatory-monitoring
+    type: builtin
+    description: 法律法规动态追踪
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- browser
+- web
+- session_search

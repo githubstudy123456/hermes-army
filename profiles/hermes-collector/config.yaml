@@ -1,0 +1,13 @@
+# config.yaml — hermes-collector
+
+name: hermes-collector
+description: 爱马仕军团信息收集员，专职采集各类原始信息
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- web
+- browser
+- terminal
+- file

@@ -1,0 +1,35 @@
+# config.yaml — hermes-cto-secretary
+
+name: hermes-cto-secretary
+description: CTO秘书，严格审核技术架构和代码产出
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search
+
+skills:
+  - name: slowmist-agent-security
+    type: external
+    url: https://github.com/nocatch-unchecked/slowmist-agent-security
+    description: 安全审计框架，代码安全审核
+  - name: code-review
+    type: local
+  - name: software-development-methodology
+    type: local
+  - name: architecture-design
+    type: local
+  - name: frontend-dev
+    type: local
+  - name: backend-dev
+    type: local
+  - name: github-code-review
+    type: local

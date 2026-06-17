@@ -1,0 +1,292 @@
+name: "Hermès 产品上线流程"
+description: "产品需求 → 各部门准备 → 上线审批 → 发布 → 复盘"
+
+# ═══════════════════════════════════════════════════════════
+# 第一阶段：产品规划
+# ═══════════════════════════════════════════════════════════
+- id: product_analyze
+  role: hermes-coo
+  input_doc: "[产品原始需求]"
+  task: |
+    收到产品需求，必须执行。
+
+    产品需求：{{product_idea}}
+    背景：{{context}}
+
+    输出：
+    1. 产品定位（一句话）
+    2. 目标用户
+    3. MVP 范围
+    4. 成功指标
+    5. 参与部门
+    6. 时间线和里程碑
+
+    输出：product_analyze_成果.md
+  output_doc: "product_analyze_成果.md"
+  output_dir: "product/"
+
+# ═══════════════════════════════════════════════════════════
+# 第二阶段：各部门准备（并行）
+# ═══════════════════════════════════════════════════════════
+
+- id: tech_prep
+  role: hermes-cto
+  input_doc: "product/product_analyze_成果.md"
+  task: |
+    收到技术准备工作任务，必须执行。
+
+    必须先读：product/product_analyze_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 技术方案评审
+    2. 开发进度评估
+    3. 测试计划
+    4. 上线方案
+    5. 监控告警配置
+    6. 技术风险清单
+
+    输出：tech_prep_成果.md
+  output_doc: "tech_prep_成果.md"
+  output_dir: "product/cto/"
+  condition: "true"
+
+- id: ops_prep
+  role: hermes-coo
+  input_doc: "product/product_analyze_成果.md"
+  task: |
+    收到运营准备工作任务，必须执行。
+
+    必须先读：product/product_analyze_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 客服准备
+    2. 内容准备
+    3. 用户教育
+    4. 应急预案
+    5. 运营指标监控
+
+    输出：ops_prep_成果.md
+  output_doc: "ops_prep_成果.md"
+  output_dir: "product/coo/"
+  condition: "true"
+
+- id: data_prep
+  role: hermes-cio
+  input_doc: "product/product_analyze_成果.md"
+  task: |
+    收到数据准备工作任务，必须执行。
+
+    必须先读：product/product_analyze_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 数据埋点方案
+    2. 数据指标定义
+    3. AB测试方案
+    4. 数据质量监控
+
+    输出：data_prep_成果.md
+  output_doc: "data_prep_成果.md"
+  output_dir: "product/cio/"
+  condition: "true"
+
+- id: legal_prep
+  role: hermes-clo
+  input_doc: "product/product_analyze_成果.md"
+  task: |
+    收到法务准备工作任务，必须执行。
+
+    必须先读：product/product_analyze_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 合规审查
+    2. 用户协议/隐私政策更新
+    3. 数据合规评估
+    4. 监管备案需求
+
+    输出：legal_prep_成果.md
+  output_doc: "legal_prep_成果.md"
+  output_dir: "product/clo/"
+  condition: "true"
+
+- id: finance_prep
+  role: hermes-cfo
+  input_doc: "product/product_analyze_成果.md"
+  task: |
+    收到财务准备工作任务，必须执行。
+
+    必须先读：product/product_analyze_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 成本估算
+    2. 收益预测
+    3. 定价策略建议
+    4. ROI评估
+    5. 预算审批
+
+    输出：finance_prep_成果.md
+  output_doc: "finance_prep_成果.md"
+  output_dir: "product/cfo/"
+  condition: "true"
+
+# ═══════════════════════════════════════════════════════════
+# 第三阶段：秘书审核
+# ═══════════════════════════════════════════════════════════
+
+- id: tech_secretary_review
+  role: hermes-cto-secretary
+  input_doc: "product/cto/tech_prep_成果.md"
+  task: |
+    审核技术准备产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：tech_secretary_review_结论.md
+  output_doc: "tech_secretary_review_结论.md"
+  output_dir: "product/secretary/cto/"
+
+- id: ops_secretary_review
+  role: hermes-coo-secretary
+  input_doc: "product/coo/ops_prep_成果.md"
+  task: |
+    审核运营准备产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：ops_secretary_review_结论.md
+  output_doc: "ops_secretary_review_结论.md"
+  output_dir: "product/secretary/coo/"
+
+- id: data_secretary_review
+  role: hermes-cio-secretary
+  input_doc: "product/cio/data_prep_成果.md"
+  task: |
+    审核数据准备产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：data_secretary_review_结论.md
+  output_doc: "data_secretary_review_结论.md"
+  output_dir: "product/secretary/cio/"
+
+- id: legal_secretary_review
+  role: hermes-clo-secretary
+  input_doc: "product/clo/legal_prep_成果.md"
+  task: |
+    审核法务准备产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：legal_secretary_review_结论.md
+  output_doc: "legal_secretary_review_结论.md"
+  output_dir: "product/secretary/clo/"
+
+- id: finance_secretary_review
+  role: hermes-cfo-secretary
+  input_doc: "product/cfo/finance_prep_成果.md"
+  task: |
+    审核财务准备产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：finance_secretary_review_结论.md
+  output_doc: "finance_secretary_review_结论.md"
+  output_dir: "product/secretary/cfo/"
+
+# ═══════════════════════════════════════════════════════════
+# 第四阶段：上线审批
+# ═══════════════════════════════════════════════════════════
+- id: launch_approval
+  role: hermes-cto
+  input_doc: |
+    - product/product_analyze_成果.md
+    - product/secretary/cto/tech_secretary_review_结论.md
+    - product/secretary/coo/ops_secretary_review_结论.md
+    - product/secretary/cio/data_secretary_review_结论.md
+    - product/secretary/clo/legal_secretary_review_结论.md
+    - product/secretary/cfo/finance_secretary_review_结论.md
+  task: |
+    汇总所有部门准备情况，输出上线审批决策。
+
+    必须先读所有审核结论。
+
+    输出：
+    1. 审批结论：✅批准 / ❌不批准 / ⚠️有条件批准
+    2. 各部门就绪状态表
+    3. 风险评估
+    4. 上线后监控重点
+
+    输出：launch_approval_成果.md
+  output_doc: "launch_approval_成果.md"
+  output_dir: "product/"
+
+# ═══════════════════════════════════════════════════════════
+# 第五阶段：执行发布（如批准）
+# ═══════════════════════════════════════════════════════════
+- id: launch_execute
+  role: hermes-cto
+  input_doc: "product/launch_approval_成果.md"
+  task: |
+    执行产品上线。
+
+    必须先读：launch_approval_成果.md
+    只有审批通过才执行。
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 发布执行记录
+    2. 验证结果
+    3. 监控报告
+    4. 问题记录
+
+    输出：launch_execute_成果.md
+  output_doc: "launch_execute_成果.md"
+  output_dir: "product/"
+  condition: "{{launch_approval_成果.md}} contains 批准"
+
+# ═══════════════════════════════════════════════════════════
+# 第六阶段：复盘
+# ═══════════════════════════════════════════════════════════
+- id: launch_postmortem
+  role: hermes-coo
+  input_doc: |
+    - product/product_analyze_成果.md
+    - product/launch_approval_成果.md
+    - product/launch_execute_成果.md
+  task: |
+    产品上线复盘。
+
+    必须先读所有上游文档。
+
+    输出：
+    1. 上线概况
+    2. 各维度评估
+    3. 问题记录
+    4. 改进项
+
+    输出：launch_postmortem_成果.md
+  output_doc: "launch_postmortem_成果.md"
+  output_dir: "product/"
+  condition: "{{launch_approval_成果.md}} contains 批准"
+
+metadata:
+  version: "2.0"
+  author: Hermès Corp
+  created: "2026-06-17"
+  tags: [产品, 上线, 发布]
+  phases: [规划, 准备, 审批, 发布, 复盘]

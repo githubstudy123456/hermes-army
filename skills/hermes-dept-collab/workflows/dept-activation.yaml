@@ -1,0 +1,74 @@
+name: "Hermès 部门激活路由"
+description: "主人指令 → Commander 分析意图 → 路由到对应工作流 → 执行 → 汇报"
+
+# ═══════════════════════════════════════════════════════════
+# 第一阶段：意图分析 + 路由决策
+# ═══════════════════════════════════════════════════════════
+- id: intent_analysis
+  role: commander
+  input_doc: "[主人原始指令]"  # 直接来自主人
+  task: |
+    收到主人指令，必须分析意图并决定路由。
+
+    指令：{{user_request}}
+    背景：{{context}}
+
+    输出：
+    1. 指令类型判断（跨部门/故障/产品上线/营销/代码审查/部门监察/单一部门/战略）
+    2. 激活的工作流文件
+    3. 激活的部门（COO/CTO/CIO/CFO/CLO/CRO）
+    4. 各部门的任务摘要
+    5. 优先级（P0/P1/P2/P3）
+    6. 时间预期
+    7. 是否需要 Commander 直接处理
+
+    如果指令模糊，先说明需要澄清的问题，不要假理解。
+
+    输出：intent_analysis_成果.md
+  output_doc: "intent_analysis_成果.md"
+  output_dir: "routing/"
+
+# ═══════════════════════════════════════════════════════════
+# 第二阶段：路由分发（按 intent_analysis 结果走对应工作流）
+# ═══════════════════════════════════════════════════════════
+# 此节点之后，根据 intent_analysis 的结论，
+# 跳转到对应的工作流文件执行
+
+# ═══════════════════════════════════════════════════════════
+# 第三阶段：结果汇总
+# ═══════════════════════════════════════════════════════════
+- id: summarize_results
+  role: commander
+  input_doc: "[对应工作流产出的决策文档]"  # 来自执行完的工作流
+  task: |
+    任务执行完成，汇总结果汇报主人。
+
+    原始指令：{{user_request}}
+
+    必须读取执行完成的工作流产出的所有文档。
+
+    输出：
+    1. 任务状态：✅完成 / ⚠️部分完成 / ❌未完成 / ⏳进行中
+    2. 核心产出摘要
+    3. 各部门贡献
+    4. 待跟进事项
+    5. 建议的下一步
+
+    输出：summarize_results_成果.md
+  output_doc: "summarize_results_成果.md"
+  output_dir: "routing/"
+
+metadata:
+  version: "2.0"
+  author: Hermès Corp
+  created: "2026-06-17"
+  tags: [路由, 入口, DAG]
+  routing_rules:
+    跨部门复杂任务: ceo-org-delegation.yaml
+    紧急故障/事故: incident-response.yaml
+    产品/功能上线: product-launch.yaml
+    市场推广活动: marketing-campaign.yaml
+    重大代码变更: code-review.yaml
+    部门监察/专项审计: cro-audit.yaml
+    单一部门任务: 直接路由到对应高管
+    战略/方向性问题: Commander 直接处理

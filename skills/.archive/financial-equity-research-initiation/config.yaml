@@ -1,0 +1,8 @@
+name: financial-equity-research-initiation
+description: 首发覆盖报告（Initiation Report）草稿 — 投资评级、目标价、核心逻辑、风险因素
+category: equity-research
+toolsets:
+  - web
+  - browser
+version: 1.0.0
+author: hermes-financial

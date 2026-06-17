@@ -1,0 +1,17 @@
+name: ai-governance-legal-ai-product-assessment
+description: 对AI产品进行全链路合规评估，覆盖数据采集、模型训练、算法部署、产品上线各阶段的监管合规要求。面向 ai-governance-legal 领域，供法务团队AI产品合规评估使用。
+toolsets:
+  - file
+  - web
+category: ai-governance-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - ai-governance
+  - compliance
+  - ai-product
+  - algorithm
+  - genai
+  - algorithm-filing

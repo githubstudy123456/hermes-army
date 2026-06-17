@@ -1,0 +1,6 @@
+name: screening
+description: 对潜在投资项目进行初筛，从行业、赛道、商业模式、财务指标、估值水平等维度快速评估，输出筛选评分卡与是否进入下一阶段（尽调）的建议。
+toolsets:
+  - web
+  - terminal
+category: private-equity

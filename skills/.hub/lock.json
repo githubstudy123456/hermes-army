@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "installed": {
+    "skill-hermes": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/hexiecs/talk-normal/skill-hermes",
+      "trust_level": "community",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:de09c31a244a1608",
+      "install_path": "skill-hermes",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "install.sh",
+        "prompt.md"
+      ],
+      "metadata": {
+        "detail_url": "https://skills.sh/hexiecs/talk-normal/skill-hermes",
+        "repo_url": "https://github.com/hexiecs/talk-normal"
+      },
+      "installed_at": "2026-04-17T05:46:31.491920+00:00",
+      "updated_at": "2026-04-17T05:46:31.491934+00:00"
+    }
+  }
+}

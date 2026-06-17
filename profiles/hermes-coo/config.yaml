@@ -1,0 +1,17 @@
+# config.yaml — hermes-coo
+
+name: hermes-coo
+description: 爱马仕军团 COO，首席运营官
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search

@@ -1,0 +1,16 @@
+name: legal-commercial-vendor-review
+description: 供应商合同（Vendor Agreement）深度审查，识别标准条款、风险分级（1-10分）、输出修改建议。面向 commercial-legal 领域，供法务团队供应商合同审查使用。
+toolsets:
+  - file
+  - web
+category: commercial-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - commercial
+  - vendor
+  - contract-review
+  - risk-assessment
+  - procurement

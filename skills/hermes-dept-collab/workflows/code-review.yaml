@@ -1,0 +1,185 @@
+name: "Hermès 代码审查流程"
+description: "代码变更 → 多维度评审 → 安全/架构/合规审查 → 合并决策"
+
+# ═══════════════════════════════════════════════════════════
+# 第一阶段：变更分析
+# ═══════════════════════════════════════════════════════════
+- id: change_analysis
+  role: hermes-cto
+  input_doc: "[代码变更信息]"
+  task: |
+    收到代码审查请求，必须执行。
+
+    代码变更：{{code_change}}
+    背景：{{context}}
+
+    输出：
+    1. 变更类型（新功能/重构/Bug修复/性能/安全）
+    2. 变更范围
+    3. 代码规模
+    4. 涉及技术栈
+    5. 影响评估
+    6. 需要哪些维度的审查
+
+    输出：change_analysis_成果.md
+  output_doc: "change_analysis_成果.md"
+  output_dir: "code-review/"
+
+# ═══════════════════════════════════════════════════════════
+# 第二阶段：多维度并行审查
+# ═══════════════════════════════════════════════════════════
+
+- id: code_quality_review
+  role: hermes-cto
+  input_doc: "code-review/change_analysis_成果.md"
+  task: |
+    收到代码质量审查任务，必须执行。
+
+    必须先读：code-review/change_analysis_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 代码规范检查
+    2. 可读性评估
+    3. 可维护性评估
+    4. 测试覆盖评估
+    5. 问题列表
+
+    输出：code_quality_review_成果.md
+  output_doc: "code_quality_review_成果.md"
+  output_dir: "code-review/cto/"
+  condition: "true"
+
+- id: architecture_review
+  role: hermes-cto
+  input_doc: "code-review/change_analysis_成果.md"
+  task: |
+    收到架构审查任务，必须执行。
+
+    必须先读：code-review/change_analysis_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 架构合理性
+    2. 模块解耦评估
+    3. 扩展性评估
+    4. 技术债务评估
+    5. 问题列表
+
+    输出：architecture_review_成果.md
+  output_doc: "architecture_review_成果.md"
+  output_dir: "code-review/cto/"
+  condition: "{{change_analysis_成果.md}} contains 重构 or {{change_analysis_成果.md}} contains 新功能"
+
+- id: security_review
+  role: hermes-cto
+  input_doc: "code-review/change_analysis_成果.md"
+  task: |
+    收到安全审查任务，必须执行。
+
+    必须先读：code-review/change_analysis_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出（OWASP Top 10）：
+    1. 注入风险
+    2. 认证授权
+    3. 数据泄露
+    4. XSS/CSRF
+    5. 第三方依赖漏洞
+    6. 问题列表
+
+    输出：security_review_成果.md
+  output_doc: "security_review_成果.md"
+  output_dir: "code-review/cto/"
+  condition: "{{change_analysis_成果.md}} contains 安全 or {{change_analysis_成果.md}} contains 登录 or {{change_analysis_成果.md}} contains 支付"
+
+- id: compliance_review
+  role: hermes-clo
+  input_doc: "code-review/change_analysis_成果.md"
+  task: |
+    收到合规审查任务，必须执行。
+
+    必须先读：code-review/change_analysis_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 数据合规评估
+    2. 日志审计检查
+    3. 用户权利支持
+    4. 隐私影响评估
+    5. 问题列表
+
+    输出：compliance_review_成果.md
+  output_doc: "compliance_review_成果.md"
+  output_dir: "code-review/clo/"
+  condition: "{{change_analysis_成果.md}} contains 合规 or {{change_analysis_成果.md}} contains 用户数据"
+
+# ═══════════════════════════════════════════════════════════
+# 第三阶段：秘书审核
+# ═══════════════════════════════════════════════════════════
+
+- id: cto_secretary_review
+  role: hermes-cto-secretary
+  input_doc: |
+    - code-review/cto/code_quality_review_成果.md
+    - code-review/cto/architecture_review_成果.md
+    - code-review/cto/security_review_成果.md
+  task: |
+    审核 CTO 部所有审查产出。
+
+    必须先读上游所有文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：cto_secretary_review_结论.md
+  output_doc: "cto_secretary_review_结论.md"
+  output_dir: "code-review/secretary/cto/"
+
+- id: clo_secretary_review
+  role: hermes-clo-secretary
+  input_doc: "code-review/clo/compliance_review_成果.md"
+  task: |
+    审核合规审查产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：clo_secretary_review_结论.md
+  output_doc: "clo_secretary_review_结论.md"
+  output_dir: "code-review/secretary/clo/"
+
+# ═══════════════════════════════════════════════════════════
+# 第四阶段：合并决策
+# ═══════════════════════════════════════════════════════════
+- id: merge_decision
+  role: hermes-cto
+  input_doc: |
+    - code-review/change_analysis_成果.md
+    - code-review/secretary/cto/cto_secretary_review_结论.md
+    - code-review/secretary/clo/clo_secretary_review_结论.md
+  task: |
+    汇总所有审查结论，输出合并决策。
+
+    必须先读所有审核结论文档。
+
+    输出：
+    1. 合并结论：✅批准 / ❌拒绝 / ⚠️需修改
+    2. 各维度评审结果
+    3. 必须修复的问题
+    4. 建议修复的问题
+
+    输出：merge_decision_成果.md
+  output_doc: "merge_decision_成果.md"
+  output_dir: "code-review/"
+
+metadata:
+  version: "2.0"
+  author: Hermès Corp
+  created: "2026-06-17"
+  tags: [代码, 审查, 安全, 合规]
+  review_gate:
+    安全审查: 必须通过
+    合规审查: 必须通过（涉及用户数据时）

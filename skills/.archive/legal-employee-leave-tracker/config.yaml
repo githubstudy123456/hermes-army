@@ -1,0 +1,17 @@
+name: legal-employee-leave-tracker
+description: 追踪员工年假、病假、事假等假期余额与使用情况，支持合规性检查与假期政策提醒。面向 employment-legal 领域，供HR和法务团队员工假期管理使用。
+toolsets:
+  - file
+  - web
+category: employment-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - employment
+  - leave-management
+  - hr-compliance
+  - labor-law
+  - annual-leave
+  - sick-leave

@@ -1,0 +1,17 @@
+name: regulatory-legal-reg-change-monitor
+description: 监控并追踪中国人民银行、银保监会、证监会等监管机构发布的最新政策法规变动，识别对本企业业务的影响并推送预警。面向 regulatory-legal 领域，供法务团队监管合规监控使用。
+toolsets:
+  - file
+  - web
+category: regulatory-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - regulatory
+  - compliance
+  - policy-monitor
+  - china-regulators
+  - financial-regulation
+  - policy-change

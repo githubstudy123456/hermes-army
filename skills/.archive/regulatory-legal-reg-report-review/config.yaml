@@ -1,0 +1,17 @@
+name: regulatory-legal-reg-report-review
+description: 对企业需向监管机构提交的各类报告进行合规性审查，确保报告内容、格式、数据口径符合监管要求。面向 regulatory-legal 领域，供法务团队监管报告合规性审查使用。
+toolsets:
+  - file
+  - web
+category: regulatory-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - regulatory
+  - compliance
+  - report-review
+  - regulatory-reporting
+  - cbirc
+  - csrc

@@ -1,0 +1,25 @@
+name: hermes-marketing
+description: 爱马仕军团市场总监，负责市场营销、增长获客与品牌建设。增长导向，创意驱动，数据严谨。
+approval: true
+skills:
+  - name: twenty
+    type: external
+    url: https://github.com/twentyhq/twenty
+    description: 现代开源 CRM，市场营销与客户管理参考
+  - name: marketingskills
+    type: external
+    url: https://github.com/mitchellh/marketingskills
+    description: 营销技能资源集合
+  - name: plausible
+    type: external
+    url: https://github.com/plausible/analytics
+    description: 开源隐私友好分析平台，流量监测参考
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- vision

@@ -1,0 +1,8 @@
+name: financial-equity-research-earnings
+description: 财报关键数据提取与结构化 — 季报/年报关键指标提取、EPS/Revenue/EBITDA 对比、guidance 解读
+category: equity-research
+toolsets:
+  - web
+  - browser
+version: 1.0.0
+author: hermes-financial

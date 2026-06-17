@@ -1,0 +1,16 @@
+name: legal-commercial-nda-review
+description: 保密协议（NDA）快速 GREEN/YELLOW/RED 三级分类，输出风险摘要与处理建议。面向 commercial-legal 领域，供法务团队日常 NDA triage 使用。
+toolsets:
+  - file
+  - web
+category: commercial-legal
+owner: hermes-legal
+version: "0.1"
+created: "2026-06-14"
+tags:
+  - legal
+  - commercial
+  - nda
+  - triage
+  - risk-classification
+  - contract-review

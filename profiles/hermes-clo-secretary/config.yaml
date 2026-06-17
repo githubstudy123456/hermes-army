@@ -1,0 +1,35 @@
+# config.yaml — hermes-clo-secretary
+
+name: hermes-clo-secretary
+description: CLO秘书，严格审核法律审查产出
+approval: auto
+model: null
+provider: null
+
+toolsets:
+- hermes-cli
+- messaging
+- delegation
+- terminal
+- file
+- web
+- browser
+- session_search
+
+skills:
+  - name: ai-governance-legal
+    type: local
+  - name: ai-governance-legal-algorithm-filing
+    type: local
+  - name: ai-governance-legal-genai-compliance
+    type: local
+  - name: ai-governance-legal-ai-product-assessment
+    type: local
+  - name: legal-commercial-saas-msa-review
+    type: local
+  - name: legal-commercial
+    type: local
+  - name: legal-regulatory-monitoring
+    type: local
+  - name: legal-employee
+    type: local

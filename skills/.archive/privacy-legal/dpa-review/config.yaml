@@ -1,0 +1,10 @@
+name: dpa-review
+description: 审查数据处理协议，确保数据处理活动符合隐私法规
+category: privacy-legal
+toolsets:
+  - file
+  - web
+triggers:
+  - 新签DPA审查
+  - 现有DPA年度审计
+  - 供应商变更

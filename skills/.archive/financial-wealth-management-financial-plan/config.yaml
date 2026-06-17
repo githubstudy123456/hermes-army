@@ -1,0 +1,8 @@
+name: financial-wealth-management-financial-plan
+description: 财务计划制定（生命周期模型）— 目标设定、需求分析、资产配置、退休规划、教育金规划
+category: wealth-management
+toolsets:
+  - web
+  - terminal
+version: 1.0.0
+author: hermes-financial

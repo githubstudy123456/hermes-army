@@ -1,0 +1,269 @@
+name: "Hermès 营销活动流程"
+description: "营销活动策划 → 各部门执行 → 活动发布 → 效果复盘"
+
+# ═══════════════════════════════════════════════════════════
+# 第一阶段：营销策略制定
+# ═══════════════════════════════════════════════════════════
+- id: campaign_strategy
+  role: hermes-coo
+  input_doc: "[活动原始需求]"
+  task: |
+    收到营销活动需求，必须执行。
+
+    活动需求：{{campaign_idea}}
+    背景：{{context}}
+
+    输出：
+    1. 活动目标（拉新/促活/品牌/PR）
+    2. 目标受众
+    3. 核心信息
+    4. 活动形式
+    5. 渠道策略
+    6. 预算估算
+    7. KPI 定义
+    8. 时间安排
+    9. 参与部门
+
+    输出：campaign_strategy_成果.md
+  output_doc: "campaign_strategy_成果.md"
+  output_dir: "campaign/"
+
+# ═══════════════════════════════════════════════════════════
+# 第二阶段：各部门执行准备（并行）
+# ═══════════════════════════════════════════════════════════
+
+- id: creative_prep
+  role: hermes-coo
+  input_doc: "campaign/campaign_strategy_成果.md"
+  task: |
+    收到创意内容准备工作，必须执行。
+
+    必须先读：campaign/campaign_strategy_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 创意概念
+    2. 内容矩阵
+    3. 素材清单
+    4. 传播节奏
+    5. KOL/KOC 合作计划
+
+    输出：creative_prep_成果.md
+  output_doc: "creative_prep_成果.md"
+  output_dir: "campaign/coo/"
+  condition: "true"
+
+- id: tech_campaign_prep
+  role: hermes-cto
+  input_doc: "campaign/campaign_strategy_成果.md"
+  task: |
+    收到营销技术支撑任务，必须执行。
+
+    必须先读：campaign/campaign_strategy_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 技术支撑需求（落地页/活动页等）
+    2. 系统承压评估
+    3. 数据埋点方案
+    4. 防刷/反作弊方案
+    5. 应急预案
+
+    输出：tech_campaign_prep_成果.md
+  output_doc: "tech_campaign_prep_成果.md"
+  output_dir: "campaign/cto/"
+  condition: "true"
+
+- id: data_tracking_prep
+  role: hermes-cio
+  input_doc: "campaign/campaign_strategy_成果.md"
+  task: |
+    收到数据追踪准备工作，必须执行。
+
+    必须先读：campaign/campaign_strategy_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 活动数据指标定义
+    2. 实时监控面板
+    3. 归因分析方案
+    4. 效果评估模型
+
+    输出：data_tracking_prep_成果.md
+  output_doc: "data_tracking_prep_成果.md"
+  output_dir: "campaign/cio/"
+  condition: "true"
+
+- id: legal_campaign_prep
+  role: hermes-clo
+  input_doc: "campaign/campaign_strategy_成果.md"
+  task: |
+    收到法务合规审查任务，必须执行。
+
+    必须先读：campaign/campaign_strategy_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 活动条款审查
+    2. 用户隐私合规
+    3. 知识产权审查
+    4. 广告法合规
+
+    输出：legal_campaign_prep_成果.md
+  output_doc: "legal_campaign_prep_成果.md"
+  output_dir: "campaign/clo/"
+  condition: "true"
+
+- id: budget_approval
+  role: hermes-cfo
+  input_doc: "campaign/campaign_strategy_成果.md"
+  task: |
+    收到预算审批任务，必须执行。
+
+    必须先读：campaign/campaign_strategy_成果.md
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 详细预算拆分
+    2. ROI 预测
+    3. 预算来源
+    4. 审批状态
+
+    输出：budget_approval_成果.md
+  output_doc: "budget_approval_成果.md"
+  output_dir: "campaign/cfo/"
+  condition: "true"
+
+# ═══════════════════════════════════════════════════════════
+# 第三阶段：秘书审核
+# ═══════════════════════════════════════════════════════════
+
+- id: creative_secretary_review
+  role: hermes-coo-secretary
+  input_doc: "campaign/coo/creative_prep_成果.md"
+  task: |
+    审核创意内容产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：creative_secretary_review_结论.md
+  output_doc: "creative_secretary_review_结论.md"
+  output_dir: "campaign/secretary/coo/"
+
+- id: tech_secretary_review
+  role: hermes-cto-secretary
+  input_doc: "campaign/cto/tech_campaign_prep_成果.md"
+  task: |
+    审核营销技术产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：tech_secretary_review_结论.md
+  output_doc: "tech_secretary_review_结论.md"
+  output_dir: "campaign/secretary/cto/"
+
+- id: data_secretary_review
+  role: hermes-cio-secretary
+  input_doc: "campaign/cio/data_tracking_prep_成果.md"
+  task: |
+    审核数据追踪产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：data_secretary_review_结论.md
+  output_doc: "data_secretary_review_结论.md"
+  output_dir: "campaign/secretary/cio/"
+
+- id: legal_secretary_review
+  role: hermes-clo-secretary
+  input_doc: "campaign/clo/legal_campaign_prep_成果.md"
+  task: |
+    审核法务合规产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：legal_secretary_review_结论.md
+  output_doc: "legal_secretary_review_结论.md"
+  output_dir: "campaign/secretary/clo/"
+
+- id: budget_secretary_review
+  role: hermes-cfo-secretary
+  input_doc: "campaign/cfo/budget_approval_成果.md"
+  task: |
+    审核预算审批产出。
+
+    必须先读上游文档。
+    审核结论：✅通过 / ⚠️条件通过 / ❌打回重做
+
+    输出：budget_secretary_review_结论.md
+  output_doc: "budget_secretary_review_结论.md"
+  output_dir: "campaign/secretary/cfo/"
+
+# ═══════════════════════════════════════════════════════════
+# 第四阶段：活动执行
+# ═══════════════════════════════════════════════════════════
+- id: campaign_launch
+  role: hermes-coo
+  input_doc: |
+    - campaign/campaign_strategy_成果.md
+    - campaign/secretary/coo/creative_secretary_review_结论.md
+    - campaign/secretary/cto/tech_secretary_review_结论.md
+    - campaign/secretary/cio/data_secretary_review_结论.md
+    - campaign/secretary/clo/legal_secretary_review_结论.md
+    - campaign/secretary/cfo/budget_secretary_review_结论.md
+  task: |
+    汇总审核结论，执行营销活动。
+
+    必须先读所有审核结论文档。
+
+    接到任务就负责，做不了输出升级报告。
+
+    输出：
+    1. 执行检查清单
+    2. 实时数据监控
+    3. 异常情况处理
+    4. 阶段性调整
+
+    输出：campaign_launch_成果.md
+  output_doc: "campaign_launch_成果.md"
+  output_dir: "campaign/"
+
+# ═══════════════════════════════════════════════════════════
+# 第五阶段：活动复盘
+# ═══════════════════════════════════════════════════════════
+- id: campaign_postmortem
+  role: hermes-coo
+  input_doc: |
+    - campaign/campaign_strategy_成果.md
+    - campaign/campaign_launch_成果.md
+  task: |
+    营销活动复盘。
+
+    必须先读所有上游文档。
+
+    输出：
+    1. KPI 完成情况
+    2. 各渠道效果
+    3. 关键成功因素
+    4. 主要问题
+    5. 下次活动建议
+
+    输出：campaign_postmortem_成果.md
+  output_doc: "campaign_postmortem_成果.md"
+  output_dir: "campaign/"
+
+metadata:
+  version: "2.0"
+  author: Hermès Corp
+  created: "2026-06-17"
+  tags: [营销, 活动, 推广]
+  campaign_types: [品牌活动, 效果广告, 私域运营, 联名合作]

@@ -1,0 +1,6 @@
+name: financial-investment-banking-cim
+description: 投资银行 CIM（Confidential Information Memorandum）起草工具，输入公司概述/财务数据/行业背景，输出结构化备忘录草稿
+toolsets:
+  - web
+  - terminal
+category: investment-banking
